@@ -136,7 +136,7 @@ int32_t hashKeyTool( int64_t key)
 }
 
 
-int hash(const char *str )
+int hashStr(const char *str )
 {
   int hash, i;
   int len = strlen( str );

@@ -99,15 +99,15 @@ class HashShared : public basicHash
     **/
   char * insert( char * str, Index * idx )
   {
-    int hashStr = hash(str) % HASH_SIZE_NAME_INDEX ;
+    int hash = hashStr(str) % HASH_SIZE_NAME_INDEX ;
     char * p = new char[LENGTH_INDEX_NAME] ;
     memccpy( p, str, '\0', LENGTH_INDEX_NAME);
 
-    NameIndex & newNameIndex = ni[hashStr*MAX_INDEX + nbNameIndex[hashStr] ] ;
+    NameIndex & newNameIndex = ni[hash*MAX_INDEX + nbNameIndex[hash] ] ;
     newNameIndex.idx = idx ;
     newNameIndex.str = p ;
 
-    nbNameIndex[hashStr] ++ ;
+    nbNameIndex[hash] ++ ;
 
     return p ;
   }
@@ -118,11 +118,11 @@ class HashShared : public basicHash
     **/  
   Index * get( const char * str )
   {
-    int hashI = hash(str) % HASH_SIZE_NAME_INDEX ;
-    int hashStr = ( hashI ) * MAX_INDEX ;
+    int hashI = hashStr(str) % HASH_SIZE_NAME_INDEX ;
+    int hash = ( hashI ) * MAX_INDEX ;
     for( int i = 0 ; i < nbNameIndex[hashI] ; i ++ )
-      if( strcmp( str, ni[hashStr + i].str ) == 0 )
-	return ni[hashStr + i].idx ;
+      if( strcmp( str, ni[hash + i].str ) == 0 )
+	return ni[hash + i].idx ;
 
     return NULL ;
   }

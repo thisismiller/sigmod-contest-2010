@@ -5,6 +5,7 @@
 #include <map>
 #include <vector>
 #include <cstring>
+#include <unistd.h>
 #include "SimpleClient.h"
 
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
